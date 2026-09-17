@@ -15,7 +15,7 @@ Building neural networks with pure NumPy — no frameworks, no shortcuts.
 ## How to Run
 
 ```bash
-python numpy-array.py
+python ch01/numpy_array.py
 ```
 
 ## Notes
