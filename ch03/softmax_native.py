@@ -6,3 +6,5 @@ def softmax(x):
 if __name__ == "__main__":
     a = np.array([0.3,2.9,4.0])
     print(softmax(a))
+    b = np.array([1010, 1000, 990])
+    print(softmax(b))
