@@ -2,3 +2,5 @@
 .idea/
 assets/
 dataset/*.pkl
+__pycache__/
+dataset/*.gz
