@@ -35,13 +35,22 @@ def predict(network, x):
 x, t = get_data()
 network = init_network()
 accuracy = 0
-for j in range(len(x)):
-    data = predict(network, x[j])
-    # "直接把每一行的元素(相当于一张图)当作一个数组取出进行运算"
-    p = np.argmax(data)
-    # "此处索引正好对应作为输出层0到9"
-    if p == t[j]:
-        accuracy += 1
+# for j in range(len(x)):
+#     data = predict(network, x[j])
+#     # "直接把每一行的元素(相当于一张图)当作一个数组取出进行运算"
+#     p = np.argmax(data)
+#     # "此处索引正好对应作为输出层0到9"
+#     if p == t[j]:
+#         accuracy += 1
+batch_size = 100
+# 第一重是换引擎（Python 循环→C 矩阵库）
+# 第二重是省运费（权重W暂存在Cache缓存里面,不用每一次都来回搬运反复替换,CPU的运算速度通常远快于总线传输数据的速度）
+for i in range(0, len(x), batch_size):
+    x_batch = x[i:i+batch_size]
+    y_batch = predict(network, x_batch)
+    p = np.argmax(y_batch, axis=1)
+    # axis=1:每一行内部，此处是跨 10 列比大小，取最大值的列下标. axis=0则是每列内比较元素大小后取下标值.
+    accuracy += np.sum(p == t[i:i+batch_size])
 print(f"Accuracy: {accuracy/len(x)*100}%")
 
 
