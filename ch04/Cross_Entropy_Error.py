@@ -27,9 +27,9 @@ if __name__ == "__main__":
     y = np.array([0.1, 0.7, 0.2])      # 预测：给1号类别7成把握
     t_onehot = np.array([0, 1, 0])     # 独热答案：就是1号
     t_label = np.array([1])                        # 整数标签版要的格式
-
     print(cross_entropy_error_onehot(y, t_onehot))# 应得 -log(0.7) ≈ 0.357
     print(cross_entropy_error(y, t_label))
+
     # 情况2：batch 两张图
     y = np.array([[0.1, 0.7, 0.2],
                   [0.8, 0.1, 0.1]])    # 第二张猜错了（正确答案1号，只给了0.1）
