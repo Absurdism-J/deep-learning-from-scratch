@@ -1,6 +1,6 @@
 import sys
 sys.path.append("..")
-from Cross_Entropy_Error import cross_entropy_error_onehot
+from cross_entropy_error import cross_entropy_error_onehot
 from numerical_diff import numerical_gradient
 from ch03.softmax_fixed import softmax
 import numpy as np
