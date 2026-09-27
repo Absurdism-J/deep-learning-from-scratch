@@ -4,3 +4,4 @@ assets/
 dataset/*.pkl
 __pycache__/
 dataset/*.gz
+sample_weight.pkl
