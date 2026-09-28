@@ -11,16 +11,19 @@ def func2(x):
 
 def numerical_gradient(func,x):
     h = 1e-4
-    G = np.zeros_like(x,dtype=np.float64)
-    for i in range(x.size):
-        temp = x[i]
-        x[i] = temp+h
+    grad = np.zeros_like(x,dtype=np.float64)
+    it = np.nditer(x, flags=['multi_index'], op_flags=['readwrite'])
+    while not it.finished:
+        idx = it.multi_index
+        temp = x[idx]
+        x[idx] = temp+h
         f1 = func(x)
-        x[i] = temp-h
+        x[idx] = temp-h
         f2 = func(x)
-        G[i] = (f1-f2)/(2*h)
-        x[i] = temp
-    return G
+        grad[idx] = (f1-f2)/(2*h)
+        x[idx] = temp
+        it.iternext()
+    return grad
 
 # def numerical_gradient(func,x):
 #     h = 1e-4
