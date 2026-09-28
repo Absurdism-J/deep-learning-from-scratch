@@ -17,6 +17,6 @@ class simpleNet:
 net = simpleNet()
 x = np.array([0.6, 0.9])
 t = np.array([0, 0, 1])   # 标准答案
-loss1 = net.loss(x,t)
-G = numerical_gradient(net.loss,x)
-print(G)
+f = lambda w: net.loss(x,t)
+grad = numerical_gradient(f,net.W)
+print(grad)
