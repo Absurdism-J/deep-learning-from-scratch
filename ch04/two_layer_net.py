@@ -8,12 +8,13 @@ from numerical_diff import numerical_gradient
 
 class TwoLayerNet:
 
-    def __init__(self,input_size,hidden_size,output_size,weight_init_std=0.01):
+    def __init__(self, input_size, hidden_size, output_size, weight_init_std: object = 0.01) -> None:
         self.param = {}
         self.param['W1'] = weight_init_std*np.random.randn(input_size,hidden_size)
         self.param['b1'] = np.zeros(hidden_size)
         self.param['W2'] = weight_init_std*np.random.randn(hidden_size,output_size)
         self.param['b2'] = np.zeros(output_size)
+
     def predict(self,x):
         W1 , W2 = self.param['W1'],self.param['W2']
         b1 , b2 = self.param['b1'],self.param['b2']
