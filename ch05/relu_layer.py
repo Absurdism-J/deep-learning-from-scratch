@@ -1,6 +1,8 @@
 class ReLu():
     def __init__(self):
         self.mask = None
+        # 需要什么就初始化什么属性，forward 算账顺手记账，backward 翻账簿。
+        # 属性为反向传播服务
 
     def forward(self, x):
         self.mask = (x <= 0)
@@ -15,5 +17,3 @@ class ReLu():
         dout[self.mask] = 0
         dx = dout
         return dx
-
-
