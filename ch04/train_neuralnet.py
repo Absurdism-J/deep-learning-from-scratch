@@ -18,7 +18,7 @@ if __name__ == '__main__':
     network = TwoLayerNet(input_size=784,hidden_size=50,output_size=10)
     for i in range(iters_num):
         # 获取mini_batch
-        batch_mask = np.random.choice(train_size,batch_size,replace=False)
+        batch_mask = np.random.choice(train_size,batch_size,replace=False)# 从train_size中随机选择batch_size张照片
         x_batch = x_train[batch_mask]
         t_batch = t_train[batch_mask]
 
