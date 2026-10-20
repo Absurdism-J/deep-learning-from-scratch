@@ -23,7 +23,7 @@ class Adagrad:
 
 if __name__ == '__main__':
     param = {'X': np.array([100.0])}
-    optimizer = Adagrad(lr=10000)
+    optimizer = Adagrad(lr=0.1)
     # 一维只有一个谷底,梯度永远指向正确方向(方向对);且Adagrad调整了步长,前面越位也可以拉回谷底(步长正确)
     for step in range(100):
         grads = {'X': 2 * param['X']}
