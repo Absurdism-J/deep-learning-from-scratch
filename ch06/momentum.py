@@ -1,5 +1,10 @@
 import numpy as np
-class Momentum():
+"""
+记住历史梯度,当前梯度会与历史梯度进行矢量合成,
+因为梯度不总是指向谷底,所以反向会抵消会让偏移幅度减小,
+同向加速,效率提高
+"""
+class Momentum:
     def __init__(self, lr, momentum):
         self.lr = lr
         self.momentum = momentum
