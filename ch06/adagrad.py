@@ -12,6 +12,7 @@ class Adagrad:
         for key in grads:
             self.h[key] += grads[key] * grads[key]
             param[key] -= self.lr * grads[key] / (np.sqrt(self.h[key]) + 1e-7)
+            # 局部的所有分量都会因整体上梯度大而被惩罚
             # + 1e-7:避免h局部分量为零,结果为NaN无意义,或者h局部分量极小,结果为inf无穷大
 
 """
