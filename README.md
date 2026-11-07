@@ -10,6 +10,8 @@ Building neural networks with pure NumPy — no frameworks, no shortcuts.
 - [x] Ch3: Neural network (forward propagation) — MNIST inference 93.52% (pretrained weights)
 - [x] Ch4: Loss functions & numerical gradient
 - [x] Ch5: Backpropagation from scratch — **self-trained MNIST 97.08%** (test set, 10k images)
+- [x] Ch6: Optimization, weight initialization, BatchNorm, regularization & hyperparameter search
+- [x] Ch7: CNN fundamentals — convolution, pooling, im2col & hierarchical feature extraction
 - [x] MNIST recognition ≥ 90% accuracy (self-trained full pipeline) — 97.08%
 
 ## Results
@@ -49,6 +51,17 @@ Trained with mini-batch SGD (lr=0.1, batch=100), 10000 iterations ≈ 17 epochs.
             two_layer_net_update.py — TwoLayerNet with backprop gradient
             gradient_check.py — numerical vs backprop gradient agreement check
             train_neuralnet_update.py — full training run → 97.08% test accuracy
+    ch06/   sgd.py, momentum.py, adagrad.py — optimizer implementations
+            adam_incomplete.py / adam_update.py — Adam experiments
+            valley_test.py — optimizer comparison on a narrow valley
+            weight_initialization.md — symmetry, saturation, Xavier & He
+            batch_normalization.md — normalization, affine transform & gradients
+            regularization.md — L1 / L2 / L∞ and Dropout
+            dropout.py — inverted Dropout with matched forward/backward scaling
+            hyperparameter_validation.md — validation-set search notes
+            hyperparameter_validation.py — log-scale learning-rate random search
+    ch07/   cnn.md — convolution, pooling, im2col, weight sharing
+            and hierarchical feature extraction
     dataset/  vendored MNIST loader (from the book's official repo)
 
 ## How to Run
@@ -60,6 +73,7 @@ Trained with mini-batch SGD (lr=0.1, batch=100), 10000 iterations ≈ 17 epochs.
     python ch05/buy_apple_orange.py # forward + backward through a shopping graph
     python ch05/gradient_check.py   # verify backprop against numerical gradient
     python ch05/train_neuralnet_update.py  # full training run (a few minutes)
+    python ch06/hyperparameter_validation.py  # two-stage learning-rate random search
 
 ## Highlights
 
@@ -97,6 +111,19 @@ Numerical gradient costs ~2 loss evaluations per parameter — ~80,000
 forward passes per iteration. Backprop costs one forward + one backward.
 The speed gap (~2–3×10⁴×) is not convenience; it is the difference between
 "five minutes" and "never finishes".
+
+**Hyperparameters are selected without touching the test set.** A shuffled
+training split provides both training and validation data. Learning rates
+are sampled on a log scale, compared by validation accuracy, then searched
+again over a narrower range. The test set remains a final evaluator, not a
+tuning signal.
+
+**CNNs turn local pattern matching into matrix multiplication.** `im2col`
+unfolds each multi-channel image patch into a row; filters form the columns
+of the other operand. Each filter produces one output channel, shared across
+all spatial positions. Stacking layers combines local responses into
+increasingly complex features, while `col2im` accumulates gradients through
+overlapping input patches during backpropagation.
 
 ## Notes — pitfalls logged
 
