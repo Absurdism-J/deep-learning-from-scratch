@@ -1,6 +1,6 @@
 import numpy as np
 
-
+# 相邻层的所有神经元之间都有连接，这称为全连接
 class Affine():
     def __init__(self, W, b):
         self.W = W

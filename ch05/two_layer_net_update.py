@@ -1,9 +1,9 @@
 import sys
 sys.path.append('..')
 from ch04.numerical_diff import numerical_gradient
-from relu_layer import *
-from affine_batch import *
-from softmax_with_loss import *
+from ch05.relu_layer import *
+from ch05.affine_batch import *
+from ch05.softmax_with_loss import *
 from collections import OrderedDict
 
 class TwoLayerNetUpdate:

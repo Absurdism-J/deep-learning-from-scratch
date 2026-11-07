@@ -20,6 +20,7 @@ class SoftmaxWithLoss:
     def backward(self, dout=1):
         batch_size = self.y.shape[0]
         dx = dout * (self.y  - self.t) / batch_size
+        # 前向传播最终输出的loss是batch里N个样本loss的平均,除了批数,反向传播要除回去
         return dx
 
 if __name__ == '__main__':

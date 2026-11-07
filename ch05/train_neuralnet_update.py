@@ -16,7 +16,7 @@ if __name__ == '__main__':
     train_acc_list = []
     test_acc_list = []
 
-    iter_per_epoch = max(train_size/batch_size,1)
+    iter_per_epoch = max(train_size/batch_size,1)  # 一集几批
 
     network = TwoLayerNetUpdate(input_size=784,hidden_size=50,output_size=10)
     for i in range(iters_num):
